@@ -32,7 +32,7 @@ class PermissionInfoSeeder extends Seeder
                 'name'      =>  'Admin',
                 'slug'     =>  'admin',
                 'description'  =>  'Administrador',
-                'full-acces' => 'yes'
+                'full-access' => 'yes'
             ]);
         }
 

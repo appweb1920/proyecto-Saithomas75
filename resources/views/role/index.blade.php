@@ -10,11 +10,7 @@
                 <a href="{{route('role.create')}}" class="btn btn-primary float-right">Create</a>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    @include('custom.message')
 
                     <table class="table table-bordered">
                         <thead>
@@ -34,7 +30,7 @@
                                 <td>{{$r->name}}</td>
                                 <td>{{$r->slug}}</td>
                                 <td>{{$r->description}}</td>
-                                <td>{{$r['full-acces']}}</td>
+                                <td>{{$r['full-access']}}</td>
                                 <td><a class="btn btn-info" href="{{route('role.show', $r->id)}}">Show</a></td>
                                 <td><a class="btn btn-info" href="{{route('role.edit', $r->id)}}">Edit</a></td>
                                 <td><a class="btn btn-danger" href="{{route('role.destroy', $r->id)}}">Delete</a></td>
