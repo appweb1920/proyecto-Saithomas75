@@ -7,6 +7,8 @@
             <div class="card">
                 <div class="card-header">List of Roles</div>
 
+                <a href="{{route('role.create')}}" class="btn btn-primary float-right">Create</a>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
