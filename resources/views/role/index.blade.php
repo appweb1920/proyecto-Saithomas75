@@ -24,8 +24,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
                             @foreach ($roles as $r)
+                            <tr>
                                 <th scope="row">{{$r ->id}}</th>
                                 <td>{{$r->name}}</td>
                                 <td>{{$r->slug}}</td>
@@ -34,8 +34,8 @@
                                 <td><a class="btn btn-info" href="{{route('role.show', $r->id)}}">Show</a></td>
                                 <td><a class="btn btn-info" href="{{route('role.edit', $r->id)}}">Edit</a></td>
                                 <td><a class="btn btn-danger" href="{{route('role.destroy', $r->id)}}">Delete</a></td>
+                            </tr>
                             @endforeach
-                          </tr>
                         </tbody>
                     </table>
                     {{$roles->links()}}
