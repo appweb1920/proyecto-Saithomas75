@@ -33,7 +33,13 @@
                                 <td>{{$r['full-access']}}</td>
                                 <td><a class="btn btn-info" href="{{route('role.show', $r->id)}}">Show</a></td>
                                 <td><a class="btn btn-info" href="{{route('role.edit', $r->id)}}">Edit</a></td>
-                                <td><a class="btn btn-danger" href="{{route('role.destroy', $r->id)}}">Delete</a></td>
+                                <td>
+                                    <form action="{{route('role.destroy', $r->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
