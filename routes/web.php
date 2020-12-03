@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/role', 'RoleController')->names('role');
 
 Route::get('/test', function () {
-    $user = User::find(2);
+    //$user = User::find(2);
 
     //$user->roles()->sync([2]);
 
