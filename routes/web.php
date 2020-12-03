@@ -1,7 +1,10 @@
 <?php
 
 use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Permisos\Models\Permission;
+use App\Permisos\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +28,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/role', 'RoleController')->names('role');
 
 Route::get('/test', function () {
-    return User::get();
+    $user = User::find(2);
+
+    //$user->roles()->sync([2]);
+
+    Gate::authorize("haveaccess", 'role.index');
+
 });
