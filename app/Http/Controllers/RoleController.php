@@ -83,15 +83,15 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions_role = [];
+        $permission_role = [];
 
         foreach($role->permissions as $p){
-            $permissions_role[] = $p->id;
+            $permission_role[] = $p->id;
         }
 
         $permissions = Permission::get();
 
-        return view('role.edit', compact('permissions', 'role', 'permissions_role'));
+        return view('role.edit', compact('permissions', 'role', 'permission_role'));
     }
 
     /**
@@ -105,7 +105,7 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|max:50|unique:roles,name,'.$role->id,
-            'slug' => 'required|max:50|unique:roles,slug,'.$role->slug,
+            'slug' => 'required|max:50|unique:roles,slug,'.$role->id,
             'full-access' => 'required|in:yes,no'
         ]);
 

@@ -57,7 +57,7 @@
                                     value="{{$p->id}}" name="permission[]"
                                     @if (is_array(old('permission')) && in_array("$p->id", old('permission')))
                                         checked
-                                    @elseif (is_array($permissions_role) && in_array("$p->id", $permissions_role))
+                                    @elseif (is_array($permission_role) && in_array("$p->id", $permission_role))
                                         checked
                                     @endif
                                     >
