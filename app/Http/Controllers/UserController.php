@@ -49,6 +49,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
         $roles = Role::orderBy('name')->get();
 
         return view('user.view', compact('roles', 'user'));
@@ -62,6 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         $roles = Role::orderBy('name')->get();
 
         return view('user.edit', compact('roles', 'user'));
