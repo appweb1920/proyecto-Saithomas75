@@ -38,6 +38,13 @@ class PermissionInfoSeeder extends Seeder
 
         $useradmin->roles()->sync([$roladmin->id]);
 
+        $roluser = Role::create([
+            'name'      =>  'Registered User',
+            'slug'     =>  'registereduser',
+            'description'  =>  'Registered User',
+            'full-access' => 'no'
+        ]);
+
         $permission_all = [];
         //Permisos de los roles
         $permission = Permission::create([
