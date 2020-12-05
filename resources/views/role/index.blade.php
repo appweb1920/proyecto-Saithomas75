@@ -7,7 +7,9 @@
             <div class="card">
                 <div class="card-header">List of Roles</div>
 
-                <a href="{{route('role.create')}}" class="btn btn-primary float-right">Create</a>
+                @can('haveaccess', 'role.create')
+                    <a href="{{route('role.create')}}" class="btn btn-primary float-right">Create</a>
+                @endcan
 
                 <div class="card-body">
                     @include('custom.message')

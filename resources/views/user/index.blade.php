@@ -29,14 +29,21 @@
                                 @isset($r->roles[0]->name)
                                     <td>{{$r->roles[0]->name}}</td>
                                 @endisset
-                                <td><a class="btn btn-info" href="{{route('user.show', $r->id)}}">Show</a></td>
-                                <td><a class="btn btn-info" href="{{route('user.edit', $r->id)}}">Edit</a></td>
+
+                                @can('view', [$r, ['user.show', 'userown.show']])
+                                    <td><a class="btn btn-info" href="{{route('user.show', $r->id)}}">Show</a></td>
+                                @endcan
+                                @can('update', [$r, ['user.edit', 'userown.edit']])
+                                    <td><a class="btn btn-info" href="{{route('user.edit', $r->id)}}">Edit</a></td>
+                                @endcan
                                 <td>
-                                    <form action="{{route('user.destroy', $r->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
+                                    @can('haveaccess', 'user.destroy')
+                                        <form action="{{route('user.destroy', $r->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach
