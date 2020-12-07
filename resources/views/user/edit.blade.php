@@ -21,19 +21,35 @@
                                 <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{old('email', $user->email)}}">
                             </div>
 
-                            <div class="form-group">
-                                <select class="form-control" name="roles" id="roles">
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}"
-                                            @isset($user->roles[0]->name)
-                                                @if ($role->name == $user->roles[0]->name)
-                                                    selected
-                                                @endif
-                                            @endisset
-                                            >{{$role->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            @if ($roleId[0]->role_id == 1)
+                                <div class="form-group">
+                                    <select class="form-control" name="roles" id="roles">
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->id}}"
+                                                @isset($user->roles[0]->name)
+                                                    @if ($role->name == $user->roles[0]->name)
+                                                        selected
+                                                    @endif
+                                                @endisset
+                                                >{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    <select hidden class="form-control" name="roles" id="roles">
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->id}}"
+                                                @isset($user->roles[0]->name)
+                                                    @if ($role->name == $user->roles[0]->name)
+                                                        selected
+                                                    @endif
+                                                @endisset
+                                                >{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
 
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>

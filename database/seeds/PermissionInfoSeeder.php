@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Permisos\Models\Role;
 use App\Permisos\Models\Permission;
+use App\Posts\Models\Gender;
 use Illuminate\Support\Facades\Hash;
 
 class PermissionInfoSeeder extends Seeder
@@ -15,7 +16,7 @@ class PermissionInfoSeeder extends Seeder
      */
     public function run()
     {
-        //Usuario
+        //Usuario Administrador
         $useradmin = User::where('email', 'admin@admin.com')->first();
         if(!$useradmin){
             $useradmin = User::create([
@@ -29,7 +30,7 @@ class PermissionInfoSeeder extends Seeder
         $roladmin = Role::where('name', 'admin')->first();
         if(!$roladmin){
             $roladmin = Role::create([
-                'name'      =>  'Admin',
+                'name'      =>  'Administrador',
                 'slug'     =>  'admin',
                 'description'  =>  'Administrador',
                 'full-access' => 'yes'
@@ -45,7 +46,6 @@ class PermissionInfoSeeder extends Seeder
             'full-access' => 'no'
         ]);
 
-        $permission_all = [];
         //Permisos de los roles
         $permission = Permission::create([
             'name'          => 'List Role',
@@ -53,15 +53,11 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can list role'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Show Role',
             'slug'          => 'role.show',
             'description'   => 'A user can see role'
         ]);
-
-        $permission_all[] = $permission->id;
 
         $permission = Permission::create([
             'name'          => 'Create Role',
@@ -69,23 +65,17 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can create role'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Edit Role',
             'slug'          => 'role.edit',
             'description'   => 'A user can edit role'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Destroy Role',
             'slug'          => 'role.destroy',
             'description'   => 'A user can destroy role'
         ]);
-
-        $permission_all[] = $permission->id;
 
         //Permisos de usuario
         $permission = Permission::create([
@@ -94,15 +84,11 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can list user'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Show user',
             'slug'          => 'user.show',
             'description'   => 'A user can see user'
         ]);
-
-        $permission_all[] = $permission->id;
 
         $permission = Permission::create([
             'name'          => 'Create user',
@@ -110,24 +96,17 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can create user'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Edit user',
             'slug'          => 'user.edit',
             'description'   => 'A user can edit user'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Destroy user',
             'slug'          => 'user.destroy',
             'description'   => 'A user can destroy user'
         ]);
-
-        $permission_all[] = $permission->id;
-
 
         //Nuevos permisos
         $permission = Permission::create([
@@ -136,12 +115,76 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can see own user'
         ]);
 
-        $permission_all[] = $permission->id;
-
         $permission = Permission::create([
             'name'          => 'Edit own user',
             'slug'          => 'userown.edit',
             'description'   => 'A user can edit own user'
         ]);
+
+        //Generos
+        $gender = Gender::create([
+            'name'  => 'épica'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'cuento'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'novela'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'fábula'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'canción'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'himno'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'sátira'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'romance'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'soneto'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'tragedia'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'melodrama'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'comedia'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'tragicomedia'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'ensayo'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'biografía'
+        ]);
+
+        $gender = Gender::create([
+            'name'  => 'crónica'
+        ]);
+
     }
 }

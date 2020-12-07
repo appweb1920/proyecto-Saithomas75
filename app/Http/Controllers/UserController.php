@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Permisos\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -52,8 +54,9 @@ class UserController extends Controller
     {
         $this->authorize('view', [$user, ['user.show', 'userown.show']]);
         $roles = Role::orderBy('name')->get();
+        $roleId = DB::select('select role_id from role_user where user_id = ?', [Auth::user()->id]);
 
-        return view('user.view', compact('roles', 'user'));
+        return view('user.view', compact('roles', 'user', 'roleId'));
     }
 
     /**
@@ -66,8 +69,9 @@ class UserController extends Controller
     {
         $this->authorize('update', [$user, ['user.edit', 'userown.edit']]);
         $roles = Role::orderBy('name')->get();
+        $roleId = DB::select('select role_id from role_user where user_id = ?', [Auth::user()->id]);
 
-        return view('user.edit', compact('roles', 'user'));
+        return view('user.edit', compact('roles', 'user', 'roleId'));
     }
 
     /**
@@ -88,7 +92,11 @@ class UserController extends Controller
 
         $user->roles()->sync($request->get('roles'));
 
-        return redirect()->route('user.index')->with('status_success', 'User update successfully');
+        if(Auth::user()->id == 1){
+            return redirect()->route('user.index')->with('status_success', 'User update successfully');
+        }else{
+            return redirect()->route('user.show', Auth::user()->id)->with('status_success', 'User update successfully');
+        }
     }
 
     /**
