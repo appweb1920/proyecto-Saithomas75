@@ -10,20 +10,25 @@
                 <div class="card-body">
                     @include('custom.message')
 
-                    <form action="{{route('post.store')}}" method="POST">
+                    <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="tittle" name="tittle" placeholder="tittle" value="{{old('tittle')}}">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="written" id="written" rows="3" placeholder="written">{{old('written')}}</textarea>
+                                <textarea class="ckeditor form-control" name="written" id="written">{{old('written')}}</textarea>
                             </div>
-
+                            <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.ckeditor').ckeditor();
+                                });
+                            </script>
                             <hr>
 
                             <div class="form-group">
-                                <select class="form-control" name="gender" id="gender">
+                                <select class="form-control" name="gender_id" id="gender_id">
                                     @foreach ($genders as $g)
                                         <option value="{{$g->id}}"
                                             >{{$g->name}}</option>

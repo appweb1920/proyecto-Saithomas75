@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Posts\Models\Gender;
+use App\Posts\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -37,7 +39,34 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tittle' => 'required|max:50',
+            'written' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+
+                $validated = $request->validate([
+                    'image' => 'mimes:jpeg,jpg,png|max:1014',
+                ]);
+
+                $extension = $request->image->extension();
+                $imageName = time().'.'.$extension;
+                $request['image'] = $imageName;
+                $request->image->storeAs('/public', $imageName);
+            }
+        }
+
+        $post = new Post;
+        $post->tittle = $request->tittle;
+        $post->written = $request->written;
+        $post->image = $request->image;
+        $post->user_id = Auth::user()->id;
+        $post->gender_id = $request->gender_id;
+        $post->save();
+
+        return "chidito";
     }
 
     /**

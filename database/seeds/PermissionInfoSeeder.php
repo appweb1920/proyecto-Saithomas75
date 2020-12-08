@@ -108,7 +108,6 @@ class PermissionInfoSeeder extends Seeder
             'description'   => 'A user can destroy user'
         ]);
 
-        //Nuevos permisos
         $permission = Permission::create([
             'name'          => 'Show own user',
             'slug'          => 'userown.show',
@@ -120,6 +119,8 @@ class PermissionInfoSeeder extends Seeder
             'slug'          => 'userown.edit',
             'description'   => 'A user can edit own user'
         ]);
+
+        $roluser->permissions()->sync([11, 12]);
 
         //Generos
         $gender = Gender::create([
