@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts\Models\Gender;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,7 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $genders = Gender::get();
+
+        return view('post.create', compact('genders'));
     }
 
     /**
