@@ -15,8 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('tittle');
+            $table->string('title');
             $table->text('written');
+            $table->text('review');
+            $table->enum('visibility',['public','draft'])->nullable();
             $table->string('image')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('gender_id')->references('id')->on('genders')->onDelete('cascade');

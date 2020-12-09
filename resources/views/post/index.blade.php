@@ -5,38 +5,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">List of Roles</div>
-
-                @can('haveaccess', 'role.create')
-                    <a href="{{route('role.create')}}" class="btn btn-primary float-right">Create</a>
-                @endcan
-
+                <div class="card-header">List of Posts</div>
                 <div class="card-body">
                     @include('custom.message')
 
                     <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">full-access</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Author</th>
                             <th colspan="3"></th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $r)
+                            @foreach ($post as $p)
                             <tr>
-                                <th scope="row">{{$r ->id}}</th>
-                                <td>{{$r->name}}</td>
-                                <td>{{$r->slug}}</td>
-                                <td>{{$r->description}}</td>
-                                <td>{{$r['full-access']}}</td>
-                                <td><a class="btn btn-info" href="{{route('role.show', $r->id)}}">Show</a></td>
-                                <td><a class="btn btn-info" href="{{route('role.edit', $r->id)}}">Edit</a></td>
+                                @if (!is_null($p->image))
+                                    <th scope="row"><img src="{{$p->image}}"></th>
+                                @else
+                                    <th><p>No Images at the moment</p></th>
+                                @endif
+                                <td>{{$p->title}}</td>
+                                <td>{{$p->getGender()}}</td>
+                                <td>{{$p->getUser()}}</td>
+                                <td><a class="btn btn-info" href="#">Show</a></td>
+                                <td><a class="btn btn-info" href="#">Edit</a></td>
                                 <td>
-                                    <form action="{{route('role.destroy', $r->id)}}" method="post">
+                                    <form action="#" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Delete</button>
@@ -46,7 +43,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{$roles->links()}}
+                    {{$post->links()}}
                 </div>
             </div>
         </div>
