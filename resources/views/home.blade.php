@@ -8,8 +8,8 @@
                 <div class="card-header">Foro</div>
                 <div class="card-body">
                     Welcome  {{ Auth::user()->name }}
-                    <a class="btn btn-primary" href="{{route('post.create')}}">Postear</a>
-                    <a class="btn btn-primary" href="{{route('post.index')}}">Listado</a>
+                    <a class="btn btn-primary" href="{{route('post.create')}}">Post</a>
+                    <a class="btn btn-primary" href="{{route('post.index')}}">My posts</a>
                 </div>
             </div>
         </div>

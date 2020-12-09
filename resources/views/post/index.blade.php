@@ -16,6 +16,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Author</th>
+                            <th scope="col">Visibility</th>
                             <th colspan="3"></th>
                           </tr>
                         </thead>
@@ -30,10 +31,11 @@
                                 <td>{{$p->title}}</td>
                                 <td>{{$p->getGender()}}</td>
                                 <td>{{$p->getUser()}}</td>
-                                <td><a class="btn btn-info" href="#">Show</a></td>
-                                <td><a class="btn btn-info" href="#">Edit</a></td>
+                                <td>{{$p->visibility}}</td>
+                                <td><a class="btn btn-info" href="{{route('post.show', $p->id)}}">Show</a></td>
+                                <td><a class="btn btn-info" href="{{route('post.edit', $p->id)}}">Edit</a></td>
                                 <td>
-                                    <form action="#" method="POST">
+                                    <form action="{{route('post.destroy', $p->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Delete</button>

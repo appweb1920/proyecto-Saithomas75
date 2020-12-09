@@ -5,71 +5,82 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h2>Edit Role</h2></div>
+                <div class="card-header"><h2>Edit Post</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
 
-                    <form action="{{route('role.update', $role->id)}}" method="POST">
+                    <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="container">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="name" value="{{old('name', $role->name)}}">
+                                <label for="title">Title: </label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="title" value="{{old('title', $post->title)}}">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" value="{{old('slug', $role->slug)}}">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" name="description" id="description" name="description" rows="3" placeholder="Description">{{old('description', $role->description)}}</textarea>
-                            </div>
-                            <hr>
 
-                            <h3>Full Access</h3>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="fullaccessyes" name="full-access" class="custom-control-input" value="yes"
-                                @if ($role['full-access'] == 'yes')
-                                    checked
-                                @elseif (old('full-access') == "yes")
-                                    checked
-                                @endif
-                                >
-                                <label class="custom-control-label" for="fullaccessyes">Yes</label>
-                              </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="fullaccessno" name="full-access" class="custom-control-input" value="no"
-                                @if ($role['full-access'] == 'no')
-                                    checked
-                                @elseif (old('full-access') == "no")
-                                    checked
-                                @endif
-                                >
-                                <label class="custom-control-label" for="fullaccessno">No</label>
+                            <div class="form-group">
+                                <label for="review">Review: </label>
+                                <textarea class="ckeditor form-control" name="review" id="review">{{old('review', $post->review)}}</textarea>
                             </div>
 
                             <hr>
 
-                            <h3>Permission List</h3>
+                            <div class="form-group">
+                                <label for="written">Written: </label>
+                                <textarea class="ckeditor form-control" name="written" id="written">{{old('written', $post->written)}}</textarea>
+                            </div>
 
-                            @foreach ($permissions as $p)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="permission_{{$p->id}}"
-                                    value="{{$p->id}}" name="permission[]"
-                                    @if (is_array(old('permission')) && in_array("$p->id", old('permission')))
-                                        checked
-                                    @elseif (is_array($permission_role) && in_array("$p->id", $permission_role))
-                                        checked
-                                    @endif
-                                    >
-                                    <label class="custom-control-label" for="permission_{{$p->id}}">
-                                        {{$p->id}}
-                                        -
-                                        {{$p->name}}
-                                        <em>{{$p->description}}</em>
-                                    </label>
-                                </div>
-                            @endforeach
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <hr>
+
+                            <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.ckeditor').ckeditor();
+                                });
+                            </script>
+
+                            <p>Visibility</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="public" name="visibility" class="custom-control-input" value="public"
+                                @if ($post->visibility == "public")
+                                    checked
+                                @elseif (old('visibility') == "public")
+                                    checked
+                                @endif
+                                >
+                                <label class="custom-control-label" for="public">Public</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="draft" name="visibility" class="custom-control-input" value="draft"
+                                @if ($post->visibility == "draft")
+                                    checked
+                                @elseif (old('visibility') == "draft")
+                                    checked
+                                @endif
+                                >
+                                <label class="custom-control-label" for="draft">Draft</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender_id">Gender</label>
+                                <select class="form-control" name="gender_id" id="gender_id">
+                                    @foreach ($genders as $g)
+                                        <option value="{{$g->id}}"
+                                            @if ($post->gender_id == $g->id)
+                                                selected
+                                            @endif
+                                            >{{$g->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Image: </label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Post</button>
                         </div>
                     </form>
                 </div>

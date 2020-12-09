@@ -6,6 +6,7 @@ use App\Posts\Models\Gender;
 use App\Posts\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -17,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::orderBy('id', 'Desc')->paginate(2);
+        //$post = Post::orderBy('id', 'Desc')->paginate(2);
+
+        $post = Post::where('user_id', '=', Auth::user()->id)->paginate(2);
 
         return view('post.index', compact('post'));
     }
@@ -79,9 +82,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+
+        return view('post.view', compact('post'));
     }
 
     /**
@@ -90,9 +94,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $genders = Gender::get();
+        return view('post.edit', compact('post','genders'));
     }
 
     /**
@@ -104,7 +109,39 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $request->validate([
+            'title'         => 'required|max:50',
+            'written'       => 'required',
+            'review'        => 'required|max:250',
+            'visibility'    => 'required|in:public,draft',
+        ]);
+
+        if ($request->file('image')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,png|dimensions:max_width=176,max_height=275',
+            ]);
+
+            $path = Storage::disk('public')->put('images', $request->file('image'));
+            $url = asset($path);
+        }else{
+            $url = $post->image;
+        }
+
+        $userID = $post->user_id;
+
+        $post->title        = $request->title;
+        $post->written      = $request->written;
+        $post->review       = $request->review;
+        $post->visibility   = $request->visibility;
+        $post->image        = $url;
+        $post->user_id      = $userID;
+        $post->gender_id    = $request->gender_id;
+        $post->save();
+
+        return redirect()->route('post.index')->with('status_success', 'Post saved successfully');
     }
 
     /**
