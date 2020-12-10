@@ -29,5 +29,8 @@ Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/user', 'UserController', ['except'=>['create', 'store']])->names('user');
 
+Route::post('/post/searchIndex', 'PostController@searchIndex')->name('post.search');
+
 Route::resource('/post', 'PostController')->names('post');
+
 

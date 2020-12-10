@@ -20,7 +20,8 @@
                     <p>{{$post->title}}</p>
                     <p>{{$post->getGender()}}</p>
                     <p>{{$post->getUser()}}</p>
-                    {{$post->written}}
+                    <?php echo $post->written; ?>
+
                 </div>
             </div>
         </div>

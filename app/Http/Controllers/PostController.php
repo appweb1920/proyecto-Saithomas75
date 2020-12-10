@@ -25,6 +25,13 @@ class PostController extends Controller
         return view('post.index', compact('post'));
     }
 
+    public function searchIndex(Request $request)
+    {
+
+        $post = Post::where([['user_id', '<>', Auth::user()->id],['title', 'LIKE', '%' . $request->search . '%']])->paginate(2);
+
+        return view('post.index', compact('post'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -150,8 +157,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('post.index')->with('status_success', 'Post successfully removed');
     }
 }

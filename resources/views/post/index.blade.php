@@ -17,7 +17,7 @@
                             <th scope="col">Gender</th>
                             <th scope="col">Author</th>
                             <th scope="col">Visibility</th>
-                            <th colspan="3"></th>
+                            <th colspan="3">Actions</th>
                           </tr>
                         </thead>
                         <tbody>

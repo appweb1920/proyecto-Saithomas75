@@ -37,6 +37,8 @@
                                 </div>
                             @endif
 
+                            <a href="#">Change password</a>
+                            <hr>
                             <a class="btn btn-success" href="{{route('user.edit', $user->id)}}">Edit</a>
                             <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
                         </div>
