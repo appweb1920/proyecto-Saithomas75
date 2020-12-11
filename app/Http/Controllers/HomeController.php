@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts\Models\Gender;
 use App\Posts\Models\Post;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $post = Post::where('user_id', '=', '1')->get();
+        $gender = Gender::get();
 
-        return view('home', compact('post'));
+        return view('home', compact('post', 'gender'));
     }
 }

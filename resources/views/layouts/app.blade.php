@@ -76,24 +76,30 @@
 
                     @else
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Browse
                         </button>
-                        <div class="dropdown-menu dropdown-multicol2" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu dropdown-multicol2 bg-dark" aria-labelledby="dropdownMenuButton">
                             <div class="dropdown-col">
-                            <a class="dropdown-item" href="#">Oranges</a>
-                            <a class="dropdown-item" href="#">Bananas</a>
-                            <a class="dropdown-item" href="#">Apples</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="{{route('post.search', $gender[0]->name)}}">{{$gender[0]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[1]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[2]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[3]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[4]->name}}</a>
                             </div>
                             <div class="dropdown-col">
-                            <a class="dropdown-item" href="#">Potatoes</a>
-                            <a class="dropdown-item" href="#">Leeks</a>
-                            <a class="dropdown-item" href="#">Cauliflowers</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[5]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[6]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[7]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[8]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[9]->name}}</a>
                             </div>
                             <div class="dropdown-col">
-                            <a class="dropdown-item" href="#">Beef</a>
-                            <a class="dropdown-item" href="#">Pork</a>
-                            <a class="dropdown-item" href="#">Venison</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[10]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[11]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[12]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[13]->name}}</a>
+                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[14]->name}}</a>
                             </div>
                         </div>
                     </div>

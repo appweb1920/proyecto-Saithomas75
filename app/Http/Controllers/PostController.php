@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function searchIndex(Request $request)
     {
-
+        return $request;
         $post = Post::where([['visibility', '=', 'public'],['title', 'LIKE', '%' . $request->search . '%']])->paginate(3);
 
         return view('post.index', compact('post'));
