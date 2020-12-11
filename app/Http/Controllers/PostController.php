@@ -43,9 +43,9 @@ class PostController extends Controller
     {
         if(isset($request['gender_id'])){
             if($request->order == 1){
-                $post = Post::where([['visibility', '=', 'public'], ['gender_id', '=', $request->gender_id]])->orderBy('created_at', 'asc')->paginate(3);
-            }else{
                 $post = Post::where([['visibility', '=', 'public'], ['gender_id', '=', $request->gender_id]])->orderBy('created_at', 'desc')->paginate(3);
+            }else{
+                $post = Post::where([['visibility', '=', 'public'], ['gender_id', '=', $request->gender_id]])->orderBy('created_at', 'asc')->paginate(3);
             }
         }else{
             $post = Post::where('visibility', '=', 'public')->paginate(3);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Posts\Models\Comment;
+use App\Posts\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'comment' => 'required|max:250',
         ]);
@@ -46,7 +48,7 @@ class CommentController extends Controller
         $comment->user_id      = Auth::user()->id;
         $comment->save();
 
-        return "Listo";
+        return back();
     }
 
     /**
