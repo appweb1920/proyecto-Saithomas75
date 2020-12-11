@@ -22,8 +22,9 @@ class PostController extends Controller
         //$post = Post::orderBy('id', 'Desc')->paginate(2);
 
         $post = Post::where('user_id', '=', Auth::user()->id)->paginate(3);
+        $genders = Gender::all();
 
-        return view('post.index', compact('post'));
+        return view('post.index', compact('post', 'genders'));
     }
 
     public function searchIndex(Request $request)
@@ -33,15 +34,25 @@ class PostController extends Controller
         }
 
         $post = Post::where([['visibility', '=', 'public'],['title', 'LIKE', '%' . $request->search . '%']])->paginate(3);
+        $genders = Gender::all();
 
-        return view('post.index', compact('post'));
+        return view('post.index', compact('post', 'genders'));
     }
 
-    public function navigate()
+    public function navigate(Request $request)
     {
-        $post = Post::where('visibility', '=', 'public')->paginate(3);
+        if(isset($request['gender_id'])){
+            if($request->order == 1){
+                $post = Post::where([['visibility', '=', 'public'], ['gender_id', '=', $request->gender_id]])->orderBy('created_at', 'asc')->paginate(3);
+            }else{
+                $post = Post::where([['visibility', '=', 'public'], ['gender_id', '=', $request->gender_id]])->orderBy('created_at', 'desc')->paginate(3);
+            }
+        }else{
+            $post = Post::where('visibility', '=', 'public')->paginate(3);
+        }
+        $genders = Gender::all();
 
-        return view('post.index', compact('post'));
+        return view('post.index', compact('post', 'genders'));
     }
     /**
      * Show the form for creating a new resource.
@@ -171,6 +182,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
+        $genders = Gender::all();
 
         return redirect()->route('post.index')->with('status_success', 'Post successfully removed');
     }

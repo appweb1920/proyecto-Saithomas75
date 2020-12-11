@@ -1,10 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5" style="background-color: white">
+
+<form class="mb-2" action="{{route('post.navigate')}}" method="GET">
+    @csrf
+    <h3 class="text-center font-weight-bold">Filter</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="gender_id">Gender: </label>
+                            <select class="form-control" name="gender_id" id="gender_id">
+                                @foreach ($genders as $g)
+                                    <option value="{{$g->id}}"
+                                        >{{$g->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="order">Order By: </label>
+                            <select class="form-control" name="order" id="order">
+                                <option value="1">Más recientes</option>
+                                <option value="2">Más antiguos</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 text-center mt-auto"  s>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container" style="background-color: white">
 
     <div class="card">
-        <h2 class="card-header text-center font-weight-bold">My Writings</h2>
+        <h2 class="card-header text-center font-weight-bold">Writings</h2>
     </div>
 
     @include('custom.message')
