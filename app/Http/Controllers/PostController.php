@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts\Models\Comment;
 use App\Posts\Models\Gender;
 use App\Posts\Models\Post;
 use Illuminate\Http\Request;
@@ -91,8 +92,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-
-        return view('post.view', compact('post'));
+        $comment = Comment::where('post_id', '=', $post->id)->get();
+        return view('post.view', compact('post', 'comment'));
     }
 
     /**

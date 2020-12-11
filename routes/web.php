@@ -37,4 +37,6 @@ Route::post('/post/searchIndex', 'PostController@searchIndex')->name('post.searc
 
 Route::resource('/post', 'PostController')->names('post');
 
+Route::resource('/comment', 'CommentController')->names('comment');
+
 
