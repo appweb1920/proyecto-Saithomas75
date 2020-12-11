@@ -125,7 +125,7 @@
                             @endif
                         @else
                             <!-- Search Form-->
-                            <form  class="d-flex" action="{{route('post.search')}}" method="POST">
+                            <form  class="d-flex" action="{{route('post.search')}}" method="GET">
                                 @csrf
                                 <input class="form-control me-2" style="margin-right: 2%" type="search" placeholder="Title" aria-label="Search" name="search" id="search">
                                 <button class="btn btn-outline-success" style="margin-right: 5%" type="submit">Search</button>

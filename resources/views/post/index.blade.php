@@ -9,6 +9,14 @@
 
     @include('custom.message')
 
+    @if (!($post->isNotEmpty()))
+        <h3 class="text-center mt-5">No posts yet</h3>
+        <p class="text-center mt-1">What are you waiting for? share your stories.</p>
+        <div class="text-center">
+            <a class="btn btn-primary b-block mb-5" href="{{route('post.create')}}">Create</a>
+        </div>
+    @endif
+
     @foreach ($post as $p)
     <!--Section: Content-->
     <section class="dark-grey-text mt-4">

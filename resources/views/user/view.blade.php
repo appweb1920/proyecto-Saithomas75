@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h2>Perfil de {{Auth::user()->name}}</h2></div>
+                <div class="card-header"><h2>Profile of {{Auth::user()->name}}</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
@@ -40,7 +40,12 @@
                             <a href="#">Change password</a>
                             <hr>
                             <a class="btn btn-success" href="{{route('user.edit', $user->id)}}">Edit</a>
-                            <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
+
+                            @if (Auth::user()->id == '1')
+                                <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
+                            @else
+                                <a class="btn btn-primary" href="{{route('home')}}">Back</a>
+                            @endif
                         </div>
                     </form>
                 </div>

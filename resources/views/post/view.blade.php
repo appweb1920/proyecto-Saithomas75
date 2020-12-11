@@ -13,7 +13,6 @@
         <a class="btn btn-success mt-2" href="{{route('post.edit', $post->id)}}">Edit</a>
     @endif
 
-    <a class="btn btn-primary mt-2" href="{{route('post.index')}}">Back</a>
     <hr>
 
 
