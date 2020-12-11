@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $post = Post::where('user_id', '=', '1')->get();
+
+        return view('home', compact('post'));
     }
 }

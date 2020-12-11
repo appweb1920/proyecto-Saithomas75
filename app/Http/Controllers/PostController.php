@@ -28,7 +28,7 @@ class PostController extends Controller
     public function searchIndex(Request $request)
     {
 
-        $post = Post::where([['user_id', '<>', Auth::user()->id],['title', 'LIKE', '%' . $request->search . '%']])->paginate(2);
+        $post = Post::where([['user_id', '<>', Auth::user()->id],['visibility', '=', 'public'],['title', 'LIKE', '%' . $request->search . '%']])->paginate(3);
 
         return view('post.index', compact('post'));
     }
@@ -54,7 +54,7 @@ class PostController extends Controller
         $request->validate([
             'title'         => 'required|max:50',
             'written'       => 'required',
-            'review'        => 'required|max:250',
+            'review'        => 'required|max:400',
             'visibility'    => 'required|in:public,draft',
         ]);
 
