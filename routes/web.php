@@ -35,6 +35,8 @@ Route::resource('/user', 'UserController', ['except'=>['create', 'store']])->nam
 
 Route::get('/post/searchIndex', 'PostController@searchIndex')->name('post.search');
 
+Route::get('/post/navigate', 'PostController@navigate')->name('post.navigate');
+
 Route::resource('/post', 'PostController')->names('post');
 
 Route::resource('/comment', 'CommentController')->names('comment');

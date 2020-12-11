@@ -75,37 +75,11 @@
                     @guest
 
                     @else
-                    <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Browse
-                        </button>
-                        <div class="dropdown-menu dropdown-multicol2 bg-dark" aria-labelledby="dropdownMenuButton">
-                            <div class="dropdown-col">
-                                <a class="dropdown-item bg-dark" style="color: white" href="{{route('post.search', $gender[0]->name)}}">{{$gender[0]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[1]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[2]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[3]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[4]->name}}</a>
-                            </div>
-                            <div class="dropdown-col">
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[5]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[6]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[7]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[8]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[9]->name}}</a>
-                            </div>
-                            <div class="dropdown-col">
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[10]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[11]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[12]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[13]->name}}</a>
-                                <a class="dropdown-item bg-dark" style="color: white" href="#">{{$gender[14]->name}}</a>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="{{route('post.create')}}" class="nav-link">Create</a></li>
+                        <li class="nav-item"><a href="{{route('post.navigate')}}" class="nav-link">Navigate</a></li>
                         @can('haveaccess','role.index')
                             <li class="nav-item"><a href="{{route('role.index')}}" class="nav-link">Role</a></li>
                         @endcan

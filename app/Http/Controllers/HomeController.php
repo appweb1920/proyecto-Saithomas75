@@ -26,8 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $post = Post::where('user_id', '=', '1')->get();
-        $gender = Gender::get();
 
-        return view('home', compact('post', 'gender'));
+        return view('home', compact('post'));
     }
 }
