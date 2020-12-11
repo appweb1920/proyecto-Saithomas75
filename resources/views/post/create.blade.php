@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h2>Create Post</h2></div>
+                <div class="card-header"><h2>Create writing</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
@@ -75,7 +75,7 @@
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Post</button>
+                            <button type="submit" class="btn btn-dark btn-block my-4">Create</button>
                         </div>
                     </form>
                 </div>

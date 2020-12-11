@@ -5,10 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h2>Edit Post</h2></div>
+                <div class="card-header"><h2>Edit writing</h2></div>
 
                 <div class="card-body">
                     @include('custom.message')
+
+                    <form action="{{route('post.destroy', $post->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+
+                    <hr>
 
                     <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -80,7 +88,7 @@
                                 <input type="file" name="image" id="image" class="form-control">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Post</button>
+                            <button type="submit" class="btn btn-dark btn-block my-4">Edit</button>
                         </div>
                     </form>
                 </div>

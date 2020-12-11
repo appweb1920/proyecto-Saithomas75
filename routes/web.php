@@ -18,8 +18,12 @@ use App\Permisos\Models\Role;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('test');
 });
+
+//Route::get('/test', function () {
+//    return view('test');
+//});
 
 Auth::routes();
 

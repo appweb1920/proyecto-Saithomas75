@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         //$post = Post::orderBy('id', 'Desc')->paginate(2);
 
-        $post = Post::where('user_id', '=', Auth::user()->id)->paginate(2);
+        $post = Post::where('user_id', '=', Auth::user()->id)->paginate(3);
 
         return view('post.index', compact('post'));
     }
@@ -61,7 +61,7 @@ class PostController extends Controller
         if ($request->file('image')) {
 
             $request->validate([
-                'image' => 'mimes:jpeg,jpg,png|dimensions:max_width=176,max_height=275',
+                'image' => 'mimes:jpeg,jpg,png|dimensions:max_width=900,max_height=600',
             ]);
 
             $path = Storage::disk('public')->put('images', $request->file('image'));
@@ -128,7 +128,7 @@ class PostController extends Controller
         if ($request->file('image')) {
 
             $request->validate([
-                'image' => 'mimes:jpeg,jpg,png|dimensions:max_width=176,max_height=275',
+                'image' => 'mimes:jpeg,jpg,png|dimensions:max_width=900,max_height=6005',
             ]);
 
             $path = Storage::disk('public')->put('images', $request->file('image'));
