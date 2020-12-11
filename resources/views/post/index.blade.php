@@ -22,8 +22,8 @@
                         <div class="col-sm">
                             <label for="order">Order By: </label>
                             <select class="form-control" name="order" id="order">
-                                <option value="1">Más recientes</option>
-                                <option value="2">Más antiguos</option>
+                                <option value="1">Latest</option>
+                                <option value="2">Older</option>
                             </select>
                         </div>
                     </div>
